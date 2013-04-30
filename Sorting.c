@@ -10,21 +10,42 @@
 extern void swap(int a[], int firsti, int secondi);
 extern int chooseRandomIndex(int a[], int lowi, int highi);
 
+#if 0
 void insertionSort(int a[], int len)
     {
-    int i;
-    for (i = 0; i < len; i++)
+    int newIndex, i;
+    for (newIndex = 0; newIndex < len; newIndex++)
         {
-        int temp = a[i];
-        int j;
-
-        for (j = i - 1; j >= 0; j--)
+        int temp = a[newIndex];
+        for (i = newIndex - 1; i >= 0; i--)
             {
-            if (a[j] <= temp)
+            if(temp < a[i])
+                {
+                a[i+1] = a[i];
+                }
+            else
                 break;
-            a[j+1] = a[j];
             }
-        a[j+1] = temp;
+
+        // if i < 0 or temp >= a[i]
+        a[i+1] = temp;
+        }
+    }
+#endif
+
+void insertionSort(int a[], int len)
+    {
+    int newIndex, i;
+    for (newIndex = 0; newIndex < len; newIndex++)
+        {
+        int temp = a[newIndex];
+        i = newIndex -1;
+        while(i >= 0 && temp < a[i])
+            {
+            a[i+1] = a[i];
+            i--;
+            }
+        a[i+1] = temp;
         }
     }
 
